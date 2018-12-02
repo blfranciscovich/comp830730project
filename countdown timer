@@ -45,6 +45,7 @@ public class EasyLevel {
 		while(playing) {
 			//System.out.println("Your word is: " + hashmap.get("odg") + "\n");
           	i--;
+		System.out.println("Time remaining is: " + i + "\n");
 			String guess = getUserGuess();
 
 			Collections.sort(dogList);
