@@ -34,6 +34,7 @@ public class Run {
 
 			switch(words[0]) {
 			case "Easy":
+			case "easy":
 				EasyLevel easy = new EasyLevel();
 				easy.startEasy();
 				//LevelDecorator firstString = new LevelString("Your word is apple, find the other words: find me, find me, fine me, find me, find me");
@@ -41,10 +42,13 @@ public class Run {
 				//System.out.println(wordReplace.decorateString("") + "\n");
 				break;
 			case "Medium":
+			case "medium":
 				break;
 			case "Hard":
+			case "hard":
 				break;
 			case "Exit":
+			case "exit":
 				signedIn = false;
 				break;
 			default:
