@@ -1,38 +1,86 @@
 package comp840project;
 
-import java.util.Scanner;
+import java.util.*;
 import java.util.concurrent.ThreadLocalRandom;
 
 public class EasyLevel {
 
+	HashMap<String, ArrayList<String>> hashmap = new HashMap<String, ArrayList<String>>();
+	Integer foundWords = 0;
+	ArrayList<String> guessList = new ArrayList<String>();
+	boolean equalLists;
+
+
 	private static String[] EASY_WORD_DATABASE = new String[]
-			{ "dog","cat","bat","sell","mat","phone"};
+			{ "odg"};
 
 	public void startEasy() {
 		String originalWord = selectRandomWord();
 		String shuffled = getShuffledWord(originalWord);
 		boolean playing = true;
 
+		ArrayList<String> dogList = new ArrayList<String>();
+		dogList.add("dog");
+		dogList.add("go");
+		dogList.add("do");
+		dogList.add("god");
+	    hashmap.put("odg", dogList);
+
+	    ArrayList<String> catList = new ArrayList<String>();
+	    catList.add("cat");
+	    catList.add("act");
+	    catList.add("at");
+	    catList.add("a");
+	    catList.add("tac");
+	    hashmap.put("atc", catList);
+
+	    System.out.println("Your word is: " + originalWord + "\n");
+	    System.out.println("Please type in the original word: " + "\n");
+
+
 		while(playing) {
-			System.out.println("Your word is: " + shuffled + "\n");
+			//System.out.println("Your word is: " + hashmap.get("odg") + "\n");
 			String guess = getUserGuess();
-			if(originalWord.equals(guess)) {
-				System.out.println("Congratulations! You found the word: " + originalWord + "\n");
+
+			Collections.sort(dogList);
+		    Collections.sort(guessList);
+
+		    if(dogList.equals(guessList)) {
+
+		    	System.out.println("Congratulations! You found all the words for" + hashmap.get("odg") + "\n");
 				playing = false;
-			}else {
-				System.out.println("Sorry, try again");
+
+			} else if (!dogList.equals(guessList)) {
+
+				if(dogList.contains(guess)) {
+
+
+					System.out.println("Please type in the original word: " + "\n");
+
+					foundWords += 1;
+					guessList.add(guess);
+					System.out.println("Congratulations! You found " + foundWords + " words for: " + originalWord + "\n");
+				}else {
+					System.out.println("Sorry, try again");
+				}
+
+			} else {
+				System.out.println("An error occured");
 			}
 
 		}
 	}
 
+
 	public String getUserGuess() {
 		Scanner sn = new Scanner(System.in);
-		System.out.println("Please type in the original word: " + "\n");
+		//System.out.println("Please type in the original word: " + "\n");
 		return sn.nextLine();
 	}
 
 	public String selectRandomWord() {
+		Random r = new Random();
+
 		int rPos = ThreadLocalRandom.current().nextInt(0, EASY_WORD_DATABASE.length);
 		return EASY_WORD_DATABASE[rPos];
 	}
