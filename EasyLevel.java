@@ -18,6 +18,7 @@ public class EasyLevel {
 		String originalWord = selectRandomWord();
 		String shuffled = getShuffledWord(originalWord);
 		boolean playing = true;
+		int score = 0;
 
 		ArrayList<String> dogList = new ArrayList<String>();
 		dogList.add("dog");
@@ -46,8 +47,8 @@ public class EasyLevel {
 		    Collections.sort(guessList);
 
 		    if(dogList.equals(guessList)) {
-
-		    	System.out.println("Congratulations! You found all the words for" + hashmap.get("odg") + "\n");
+		    	score = score + 5;
+		    	System.out.println("Congratulations! You found all the words for" + hashmap.get("odg") + "." + " Here is your score:" + score + "\n");
 				playing = false;
 
 			} else if (!dogList.equals(guessList)) {
@@ -56,12 +57,19 @@ public class EasyLevel {
 
 
 					System.out.println("Please type in the original word: " + "\n");
-
+					score = score + 5;
 					foundWords += 1;
 					guessList.add(guess);
-					System.out.println("Congratulations! You found " + foundWords + " words for: " + originalWord + "\n");
+					System.out.println("Congratulations! You found " + foundWords + " words for: " + originalWord + "." + " Here is your score:" + score + "\n");
 				}else {
-					System.out.println("Sorry, try again");
+					if (score < 0 || score == 0) {
+						score = 0;
+						System.out.println("Sorry, try again." + " Here is your score:" + score);
+					}
+					if (score > 0) {
+						score = score - 1;
+						System.out.println("Sorry, try again." + " Here is your score:" + score);
+					}
 				}
 
 			} else {
