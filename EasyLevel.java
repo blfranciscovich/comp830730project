@@ -2,8 +2,6 @@ package comp840project;
 
 import java.util.*;
 import java.util.concurrent.ThreadLocalRandom;
-import java.util.Timer;
-import java.util.TimerTask;
 
 public class EasyLevel {
 
@@ -18,7 +16,6 @@ public class EasyLevel {
 
 	public void startEasy() {
 		String originalWord = selectRandomWord();
-		String shuffled = getShuffledWord(originalWord);
 		boolean playing = true;
 		int score = 0;
 
@@ -38,36 +35,46 @@ public class EasyLevel {
 	    hashmap.put("atc", catList);
 
 	    ArrayList<String> scoreList = new ArrayList<String>();
-	    
+
 	    System.out.println("Your word is: " + originalWord + "\n");
 	    System.out.println("Please type in the original word: " + "\n");
-	    
-	    
-		while(playing) {
-			//System.out.println("Your word is: " + hashmap.get("odg") + "\n");
 
+
+		while(playing) {
 			String guess = getUserGuess();
 
 			Collections.sort(dogList);
 		    Collections.sort(guessList);
 
 		    if(dogList.equals(guessList)) {
-		    	System.out.println("Congratulations! You found all the words " + hashmap.get("odg") + "." + " Here is your score:" + score + "\n");
+
+		    	System.out.println("Congratulations! You found all the words for" + hashmap.get("odg") + "\n");
 		    	String scoreAsString = Integer.toString(score);
 		    	Collections.sort(scoreList);
-		    	scoreList.add(scoreAsString + " " + Run.user);
+		    	//scoreList.add(scoreAsString + " " + Run.user);
 		    	System.out.println("S C O R E B O A R D");
 		    	System.out.println(scoreList);
 				playing = false;
 
-			} else if (!dogList.equals(guessList)) {
+			} else {
 
-				if(dogList.contains(guess)) {
-					score = score + 5;
+				if(dogList.contains(guess) && !guessList.contains(guess)) {
+
+
+					System.out.println("Please type in the original word: " + "\n");
+
 					foundWords += 1;
 					guessList.add(guess);
 					System.out.println("Congratulations! You found " + foundWords + " words for: " + originalWord + "." + " Here is your score:" + score + "\n");
-					System.out.println("Please type in the original word: " + "\n");
+
+					Collections.sort(dogList);
+				    Collections.sort(guessList);
+
+					if(dogList.equals(guessList)) {
+						System.out.println("Congratulations! You found all the words for " + originalWord + " " + hashmap.get("odg") + "\n");
+						playing = false;
+					}
+
 				}else {
 					if (score < 0 || score == 0) {
 						score = 0;
@@ -78,18 +85,12 @@ public class EasyLevel {
 						System.out.println("Sorry, try again." + " Here is your score:" + score);
 					}
 				}
-
-			} else {
-				System.out.println("An error occured");
 			}
-
 		}
 	}
 
-
 	public String getUserGuess() {
 		Scanner sn = new Scanner(System.in);
-		//System.out.println("Please type in the original word: " + "\n");
 		return sn.nextLine();
 	}
 
@@ -99,28 +100,4 @@ public class EasyLevel {
 		int rPos = ThreadLocalRandom.current().nextInt(0, EASY_WORD_DATABASE.length);
 		return EASY_WORD_DATABASE[rPos];
 	}
-
-	public String getShuffledWord(String originalWord) {
-		String shuffledWord = originalWord;
-		int wordSize = originalWord.length();
-		int shuffleCount = 10;
-
-		for(int i=0;i<shuffleCount;i++) {
-			int position1 = ThreadLocalRandom.current().nextInt(0, wordSize);
-			int position2 = ThreadLocalRandom.current().nextInt(0, wordSize);
-
-			shuffledWord = swapCharacters(shuffledWord,position1,position2);
-		}
-		return shuffledWord;
-	}
-
-	private String swapCharacters(String shuffledWord, int position1, int position2) {
-		char[] charArray = shuffledWord.toCharArray();
-		char temp = charArray[position1];
-		charArray[position1] = charArray[position2];
-		charArray[position2] = temp;
-
-		return new String(charArray);
-	}
-
 }
