@@ -51,7 +51,7 @@ public class EasyLevel {
 		    	System.out.println("Congratulations! You found all the words for" + hashmap.get("odg") + "\n");
 		    	String scoreAsString = Integer.toString(score);
 		    	Collections.sort(scoreList);
-		    	//scoreList.add(scoreAsString + " " + Run.user);
+		    	scoreList.add(scoreAsString + " " + Run.user);
 		    	System.out.println("S C O R E B O A R D");
 		    	System.out.println(scoreList);
 				playing = false;
@@ -60,7 +60,7 @@ public class EasyLevel {
 
 				if(dogList.contains(guess) && !guessList.contains(guess)) {
 
-
+					score = score + 5;
 					System.out.println("Please type in the original word: " + "\n");
 
 					foundWords += 1;
