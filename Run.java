@@ -45,7 +45,11 @@ public class Run {
 			case "Medium":
 			case "medium":
 				//MediumLevel medium = new MediumLevel();
+<<<<<<< HEAD
 				//medium.startMedium();
+=======
+				//easy.startMedium();
+>>>>>>> refs/remotes/comp830730project/master
 				break;
 			case "Hard":
 			case "hard":
