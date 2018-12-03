@@ -45,7 +45,7 @@ public class Run {
 			case "Medium":
 			case "medium":
 				//MediumLevel medium = new MediumLevel();
-				//easy.startMedium();
+				//medium.startMedium();
 				break;
 			case "Hard":
 			case "hard":
