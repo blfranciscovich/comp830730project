@@ -15,10 +15,11 @@ public class Run {
 
 		while (signedIn == false)
 		{
-		System.out.print("Hello! Please enter in a username: " + "\n");
+		System.out.print("Hello! Please enter in your initials: " + "\n");
 		user = signIn.nextLine();
-		if (user.length() < 3) {
-			System.out.print("Please pick a username that is at least 3 characters long. " + "\n");
+		if (user.length() < 3 || user.length() > 3) {
+			
+			System.out.print("Please only type in three letters " + "\n");
 			signedIn = false;
 		}
 			else {
@@ -43,12 +44,17 @@ public class Run {
 				break;
 			case "Medium":
 			case "medium":
+				//MediumLevel medium = new MediumLevel();
+				//easy.startMedium();
 				break;
 			case "Hard":
 			case "hard":
+				//HardLevel hard = new HardLevel();
+				//hard.startHard();
 				break;
 			case "Exit":
 			case "exit":
+				System.out.println("Thank you for playing!");
 				signedIn = false;
 				break;
 			default:
