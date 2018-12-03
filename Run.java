@@ -18,6 +18,7 @@ public class Run {
 		System.out.print("Hello! Please enter in your initials: " + "\n");
 		user = signIn.nextLine();
 		if (user.length() < 3 || user.length() > 3) {
+			
 			System.out.print("Please only type in three letters " + "\n");
 			signedIn = false;
 		}
