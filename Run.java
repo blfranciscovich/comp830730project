@@ -4,9 +4,10 @@ import java.io.FileNotFoundException;
 import java.util.Scanner;
 
 public class Run {
+	public static String user;
 	public static void main(String[] args) throws FileNotFoundException {
 		Player p;
-		String user;
+		
 		boolean signedIn = false;
 		Scanner signIn = new Scanner(System.in);
 		Scanner level = new Scanner(System.in);
@@ -65,3 +66,4 @@ public class Run {
 		scanner.close();
 	}
 }
+
