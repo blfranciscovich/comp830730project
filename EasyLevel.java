@@ -2,6 +2,8 @@ package comp840project;
 
 import java.util.*;
 import java.util.concurrent.ThreadLocalRandom;
+import java.util.Timer;
+import java.util.TimerTask;
 
 public class EasyLevel {
 
@@ -35,32 +37,37 @@ public class EasyLevel {
 	    catList.add("tac");
 	    hashmap.put("atc", catList);
 
+	    ArrayList<String> scoreList = new ArrayList<String>();
+	    
 	    System.out.println("Your word is: " + originalWord + "\n");
 	    System.out.println("Please type in the original word: " + "\n");
-
-
+	    
+	    
 		while(playing) {
 			//System.out.println("Your word is: " + hashmap.get("odg") + "\n");
+
 			String guess = getUserGuess();
 
 			Collections.sort(dogList);
 		    Collections.sort(guessList);
 
 		    if(dogList.equals(guessList)) {
-		    	score = score + 5;
-		    	System.out.println("Congratulations! You found all the words for" + hashmap.get("odg") + "." + " Here is your score:" + score + "\n");
+		    	System.out.println("Congratulations! You found all the words " + hashmap.get("odg") + "." + " Here is your score:" + score + "\n");
+		    	String scoreAsString = Integer.toString(score);
+		    	Collections.sort(scoreList);
+		    	scoreList.add(scoreAsString + " " + Run.user);
+		    	System.out.println("S C O R E B O A R D");
+		    	System.out.println(scoreList);
 				playing = false;
 
 			} else if (!dogList.equals(guessList)) {
 
 				if(dogList.contains(guess)) {
-
-
-					System.out.println("Please type in the original word: " + "\n");
 					score = score + 5;
 					foundWords += 1;
 					guessList.add(guess);
 					System.out.println("Congratulations! You found " + foundWords + " words for: " + originalWord + "." + " Here is your score:" + score + "\n");
+					System.out.println("Please type in the original word: " + "\n");
 				}else {
 					if (score < 0 || score == 0) {
 						score = 0;
