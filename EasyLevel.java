@@ -10,14 +10,15 @@ public class EasyLevel {
 	ArrayList<String> guessList = new ArrayList<String>();
 	boolean equalLists;
 
-
-	private static String[] EASY_WORD_DATABASE = new String[]
-			{ "odg"};
-
 	public void startEasy() {
-		String originalWord = selectRandomWord();
+
+		//new
+
+
 		boolean playing = true;
 		int score = 0;
+
+
 
 		ArrayList<String> dogList = new ArrayList<String>();
 		dogList.add("dog");
@@ -34,6 +35,11 @@ public class EasyLevel {
 	    catList.add("tac");
 	    hashmap.put("atc", catList);
 
+	    String originalWord = selectRandomWord();
+	    String[] wordArray = hashmap.get(originalWord).toArray(new String[hashmap.size()]);
+		//new
+		//System.out.print(wordArray[0]);
+
 	    ArrayList<String> scoreList = new ArrayList<String>();
 
 	    System.out.println("Your word is: " + originalWord + "\n");
@@ -43,10 +49,11 @@ public class EasyLevel {
 		while(playing) {
 			String guess = getUserGuess();
 
-			Collections.sort(dogList);
+			//Collections.sort(originalWord);
+			Collections.sort(hashmap.get(originalWord));
 		    Collections.sort(guessList);
 
-		    if(dogList.equals(guessList)) {
+		    if(hashmap.get(originalWord).equals(guessList)) {
 
 		    	System.out.println("Congratulations! You found all the words for" + hashmap.get("odg") + "\n");
 		    	String scoreAsString = Integer.toString(score);
@@ -58,7 +65,7 @@ public class EasyLevel {
 
 			} else {
 
-				if(dogList.contains(guess) && !guessList.contains(guess)) {
+				if(hashmap.get(originalWord).contains(guess) && !guessList.contains(guess)) {
 
 					score = score + 5;
 					System.out.println("Please type in the original word: " + "\n");
@@ -67,11 +74,12 @@ public class EasyLevel {
 					guessList.add(guess);
 					System.out.println("Congratulations! You found " + foundWords + " words for: " + originalWord + "." + " Here is your score:" + score + "\n");
 
-					Collections.sort(dogList);
+					Collections.sort(hashmap.get(originalWord));
 				    Collections.sort(guessList);
 
-					if(dogList.equals(guessList)) {
-						System.out.println("Congratulations! You found all the words for " + originalWord + " " + hashmap.get("odg") + "\n");
+					if(hashmap.get(originalWord).equals(guessList)) {
+						System.out.println("Congratulations! You found all the words for " + originalWord + " " + "\n");
+						//System.out.println("Congratulations! You found all the words for " + originalWord + " " + hashmap.get("odg") + "\n");
 						playing = false;
 					}
 
@@ -94,10 +102,20 @@ public class EasyLevel {
 		return sn.nextLine();
 	}
 
+//ALL NEW STUFF
 	public String selectRandomWord() {
 		Random r = new Random();
+		Object []values = hashmap.values().toArray();
+		int listnumber  = r.nextInt(values.length);
 
-		int rPos = ThreadLocalRandom.current().nextInt(0, EASY_WORD_DATABASE.length);
-		return EASY_WORD_DATABASE[rPos];
+
+		//String[] words  = (String[]) values[listnumber];
+
+		//String[] g = (String[]) hashmap.keySet().toArray();
+		Set<String>keys = hashmap.keySet();
+		String[] g = keys.toArray(new String[keys.size()]);
+		return g[listnumber];
+
+		//return words;
 	}
 }
