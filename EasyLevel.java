@@ -15,7 +15,6 @@ public class EasyLevel {
 	public void startEasy() {
 		
 		boolean playing = true;
-		int i = 20;
 		
 		ArrayList<String> dogList = new ArrayList<String>();
 		dogList.add("dog");
@@ -96,8 +95,6 @@ public class EasyLevel {
 	    
 	    String originalWord = selectRandomWord();
 	    
-	    
-	    
 	    int allowedPlays = hashmap.get(originalWord).size();
 	    
 		System.out.println("Your letters are: " + originalWord + "\n" + "You have " + allowedPlays + " chances to find all of the words" + "\n");
@@ -119,6 +116,7 @@ public class EasyLevel {
 			} else {
 				
 				if(allowedPlays==1) {
+					score = score - 1;
 					System.out.println("Sorry, you didn't find all the words. You found " + foundWords + " word(s)." + "\n" + "Here is your score:" + score + "\n" + scoreboard);
 					playing = false;
 				}
@@ -130,13 +128,13 @@ public class EasyLevel {
 					allowedPlays --;
 					foundWords += 1;
 					guessList.add(guess);
-					System.out.println("Congratulations! You found " + foundWords + " words for: " + originalWord + "." + " Here is your score:" + score + "\n" + "Please type a new your word: " + "\n");
+					System.out.println("Congratulations! You found " + foundWords + " words for: " + originalWord + "." + " Here is your score:" + score + "\n" + "Please type a new your word: " + "\n" + "You have " + allowedPlays + " chances to find the rest of the words" + "\n");
 					
 					Collections.sort(hashmap.get(originalWord));
 				    Collections.sort(guessList);
 					
 					if(hashmap.get(originalWord).equals(guessList)) {
-						System.out.println("Congratulations! You found all the words for " + originalWord + " " + "\n");
+						System.out.println("Congratulations! You found all the words for" + hashmap.get(originalWord) + "\n" + scoreboard);
 						playing = false;
 					}
 					
@@ -144,12 +142,12 @@ public class EasyLevel {
 					if (score < 0 || score == 0) {
 						score = 0;
 						allowedPlays --;
-						System.out.println("Sorry, try again." + " Here is your score:" + score);
+						System.out.println("Sorry, try again." + " Here is your score:" + score + "\n" + "You have " + allowedPlays + " chances to find the rest of the words" + "\n");
 					}
 					if (score > 0) {
 						score = score - 1;
 						allowedPlays --;
-						System.out.println("Sorry, try again." + " Here is your score:" + score);
+						System.out.println("Sorry, try again." + " Here is your score:" + score + "\n" + "You have " + allowedPlays + " chances to find the rest of the words" + "\n");
 					}
 				}
 			}  
