@@ -10,11 +10,11 @@ public class EasyLevel {
 	Integer foundWords = 0;
 	ArrayList<String> guessList = new ArrayList<String>();
 	boolean equalLists;
+	int score = 0;
 	
 	public void startEasy() {
 		
 		boolean playing = true;
-		int score = 0;
 		int i = 20;
 		
 		ArrayList<String> dogList = new ArrayList<String>();
@@ -96,7 +96,7 @@ public class EasyLevel {
 	    
 	    String originalWord = selectRandomWord();
 	    
-	    ArrayList<String> scoreList = new ArrayList<String>();
+	    
 	    
 	    int allowedPlays = hashmap.get(originalWord).size();
 	    
@@ -108,22 +108,18 @@ public class EasyLevel {
 			String guess = getUserGuess();
 			Collections.sort(hashmap.get(originalWord));
 		    Collections.sort(guessList);
+		    String scoreboard = getScoreboard();
 		    
 		    if(hashmap.get(originalWord).equals(guessList)) {
 		    	
-		    	System.out.println("Congratulations! You found all the words for" + hashmap.get(originalWord) + "\n");
+		    	System.out.println("Congratulations! You found all the words for" + hashmap.get(originalWord) + "\n" + scoreboard);
 		    	
-		    	String scoreAsString = Integer.toString(score);
-		    	Collections.sort(scoreList);
-		    	scoreList.add(scoreAsString + " " + Run.user);
-		    	System.out.println("S C O R E B O A R D");
-		    	System.out.println(scoreList);
 				playing = false;
 				
 			} else {
 				
 				if(allowedPlays==1) {
-					System.out.println("Sorry, you didn't find all the words. You found " + foundWords + "word(s). Here is your score:" + score);
+					System.out.println("Sorry, you didn't find all the words. You found " + foundWords + " word(s)." + "\n" + "Here is your score:" + score + "\n" + scoreboard);
 					playing = false;
 				}
 				
@@ -158,6 +154,20 @@ public class EasyLevel {
 				}
 			}  
 		}
+	}
+	
+	public String getScoreboard() {
+		
+		ArrayList<String> scoreList = new ArrayList<String>();
+		String scoreAsString = Integer.toString(score);
+		
+    	Collections.sort(scoreList);
+    	
+    	scoreList.add(scoreAsString + " " + Run.user);
+    	
+    	String scoreboard =  "S C O R E B O A R D" + "\n" + scoreList;
+    	
+		return scoreboard;
 	}
 	
 	public String getUserGuess() {
