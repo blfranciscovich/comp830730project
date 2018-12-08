@@ -98,10 +98,9 @@ public class EasyLevel {
 	    
 	    ArrayList<String> scoreList = new ArrayList<String>();
 	    
-//	    Timer timer = new Timer();
-//		timer.runTimer();
+	    int allowedPlays = hashmap.get(originalWord).size();
 	    
-		System.out.println("Your letters are: " + originalWord + "\n" + "You have 60 seconds to find all words" + "\n");
+		System.out.println("Your letters are: " + originalWord + "\n" + "You have " + allowedPlays + " chances to find all of the words" + "\n");
 	    System.out.println("Please type in your word: " + "\n");
 	   
 		while(playing) {
@@ -110,18 +109,10 @@ public class EasyLevel {
 			Collections.sort(hashmap.get(originalWord));
 		    Collections.sort(guessList);
 		    
-		    if (i == 0) {
-		    	String scoreAsString = Integer.toString(score);
-		    	Collections.sort(scoreList);
-		    	scoreList.add(scoreAsString + " " + Run.user);
-		    	System.out.println("S C O R E B O A R D");
-		    	System.out.println(scoreList);
-				playing = false;
-		    }
-		    
-		    else if(hashmap.get(originalWord).equals(guessList)) {
+		    if(hashmap.get(originalWord).equals(guessList)) {
 		    	
 		    	System.out.println("Congratulations! You found all the words for" + hashmap.get(originalWord) + "\n");
+		    	
 		    	String scoreAsString = Integer.toString(score);
 		    	Collections.sort(scoreList);
 		    	scoreList.add(scoreAsString + " " + Run.user);
@@ -131,10 +122,16 @@ public class EasyLevel {
 				
 			} else {
 				
-				if(hashmap.get(originalWord).contains(guess) && !guessList.contains(guess)) {
+				if(allowedPlays==1) {
+					System.out.println("Sorry, you didn't find all the words. You found " + foundWords + "word(s). Here is your score:" + score);
+					playing = false;
+				}
+				
+				else if(hashmap.get(originalWord).contains(guess) && !guessList.contains(guess)) {
 					
 					score = score + 5;
 					
+					allowedPlays --;
 					foundWords += 1;
 					guessList.add(guess);
 					System.out.println("Congratulations! You found " + foundWords + " words for: " + originalWord + "." + " Here is your score:" + score + "\n" + "Please type a new your word: " + "\n");
@@ -150,10 +147,12 @@ public class EasyLevel {
 				} else {
 					if (score < 0 || score == 0) {
 						score = 0;
+						allowedPlays --;
 						System.out.println("Sorry, try again." + " Here is your score:" + score);
 					}
 					if (score > 0) {
 						score = score - 1;
+						allowedPlays --;
 						System.out.println("Sorry, try again." + " Here is your score:" + score);
 					}
 				}
