@@ -1,4 +1,4 @@
-package comp840project;
+package WordScramble;
 
 import java.io.FileNotFoundException;
 import java.util.Scanner;
@@ -6,7 +6,6 @@ import java.util.Scanner;
 public class Run {
 	public static String user;
 	public static void main(String[] args) throws FileNotFoundException {
-		Player p;
 		
 		boolean signedIn = false;
 		Scanner signIn = new Scanner(System.in);
@@ -39,19 +38,18 @@ public class Run {
 			case "easy":
 				EasyLevel easy = new EasyLevel();
 				easy.startEasy();
-				//LevelDecorator firstString = new LevelString("Your word is apple, find the other words: find me, find me, fine me, find me, find me");
-				//LevelOneDecorator wordReplace = new LevelOneDecorator(firstString);
-				//System.out.println(wordReplace.decorateString("") + "\n");
+				//Timer timer = new Timer();
+				//timer.runTimer();
 				break;
 			case "Medium":
 			case "medium":
-				//MediumLevel medium = new MediumLevel();
-				//medium.startMedium();
+				MediumLevel medium = new MediumLevel();
+				medium.startMedium();
 				break;
 			case "Hard":
 			case "hard":
-				//HardLevel hard = new HardLevel();
-				//hard.startHard();
+				HardLevel hard = new HardLevel();
+				hard.startHard();
 				break;
 			case "Exit":
 			case "exit":
@@ -66,4 +64,3 @@ public class Run {
 		scanner.close();
 	}
 }
-
