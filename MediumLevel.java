@@ -9,6 +9,7 @@ public class MediumLevel {
 	Integer foundWords = 0;
 	ArrayList<String> guessList = new ArrayList<String>();
 	boolean equalLists;
+	int score = 0;
 	
 	public void startMedium() {
 		
@@ -213,6 +214,19 @@ public class MediumLevel {
 		}
 	}
 	
+	public String getScoreboard() {
+		
+		ArrayList<String> scoreList = new ArrayList<String>();
+		String scoreAsString = Integer.toString(score - 1);
+		
+    	Collections.sort(scoreList);
+    	
+    	scoreList.add(scoreAsString + " " + Run.user);
+    	
+    	String scoreboard =  "S C O R E B O A R D" + "\n" + scoreList;
+    	
+		return scoreboard;
+	}
 	public String getUserGuess() {
 		Scanner sn = new Scanner(System.in);
 		return sn.nextLine();
