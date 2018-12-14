@@ -49,6 +49,7 @@ public class EasyLevel {
 	    ratList.add("rat");
 	    ratList.add("at");
 	    ratList.add("a");
+	    ratList.add("tar");
 	    hashmap.put("atr", ratList);
 	    
 	    ArrayList<String> ballList = new ArrayList<String>();
