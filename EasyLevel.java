@@ -157,7 +157,7 @@ public class EasyLevel {
 	public String getScoreboard() {
 		
 		ArrayList<String> scoreList = new ArrayList<String>();
-		String scoreAsString = Integer.toString(score);
+		String scoreAsString = Integer.toString(score - 1);
 		
     	Collections.sort(scoreList);
     	
